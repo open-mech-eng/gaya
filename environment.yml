@@ -1,6 +1,11 @@
 name: gaya
+channels:
+  - cadquery
+  - conda-forge
+  - defaults
 dependencies:
-  - python=3.7
+  - python>=3.7
+  - cadquery=master
   - ipykernel
   - pip
   - pip:

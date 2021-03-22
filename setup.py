@@ -17,7 +17,7 @@ requirements = (HERE/"requirements.txt").read_text().split("\n")
 
 setup_requirements = ['pytest-runner', ]
 
-test_requirements = ['pytest>=3', ]
+test_requirements = ['pytest', ]
 
 setup(
     author="Nsikan Essien",
