@@ -20,8 +20,8 @@ setup_requirements = ['pytest-runner', ]
 test_requirements = ['pytest', ]
 
 setup(
-    author="Nsikan Essien",
-    author_email='nsikane@live.co.uk',
+    author="noce2",
+    author_email='20339399+noce2@users.noreply.github.com',
     python_requires='>=3.7',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
