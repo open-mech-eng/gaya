@@ -5,3 +5,6 @@ pytest
 pytest-runner
 jupyter-cadquery==2.0.0
 black
+
+# installs local examples package
+-e ./examples

@@ -1,11 +1,10 @@
 import cadquery as cq
 
 
-class SpindleAssemby(cq.Assembly):
+class SpindleAssembly(cq.Assembly):
     def __init__(
         self,
-        *
-        ,
+        *,
         obj: cq.AssemblyObjects = None,
         loc: cq.Optional[cq.Location] = None,
         name: cq.Optional[str] = None,
