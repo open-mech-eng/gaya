@@ -23,7 +23,7 @@ Gaya
 An object-oriented and code-driven approach to engineering design and modelling.
 
 
-* Free software: Apache Software License 2.0
+* Free software: Mozilla Public License 2.0
 * Documentation: https://gaya.readthedocs.io.
 
 
