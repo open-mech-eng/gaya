@@ -1,3 +1,4 @@
+from typing import cast
 import cadquery as cq
 
 
@@ -12,7 +13,7 @@ class VSlot:
         slot_length: float
     ):
         imported_profile = (
-            cq.importers.importDXF(c_beam_dxf_profile_loc)
+            cast(cq.Workplane, cq.importers.importDXF(c_beam_dxf_profile_loc))
             .translate((0, base_depth, 0))
             .wires()
             .toPending()

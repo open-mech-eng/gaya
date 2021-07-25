@@ -9,7 +9,8 @@ from examples.spindle_assembly.vslot import VSlot
 
 class SpindleAssembly:
     def __init__(self, *, vslot_dxf_profile_location: str):
-        self.dimensions: MappingProxyType = MappingProxyType({})
+        self.name = "Custom Spingle Assembly"
+        self.dimensions: MappingProxyType[str, float] = MappingProxyType({})
         back = VSlot(
             outer_x=80,
             outer_y=40,

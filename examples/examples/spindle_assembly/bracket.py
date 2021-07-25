@@ -1,3 +1,4 @@
+from typing import List, Tuple, cast
 import cadquery as cq
 
 from types import MappingProxyType
@@ -16,7 +17,7 @@ class Bracket:
         hole_diameter: float = 8,
         vslot_face_to_top_measurement: float = (10.4 + 0.6)
     ):
-        self.dimensions: MappingProxyType = MappingProxyType(
+        self.dimensions: MappingProxyType[str, float] = MappingProxyType(
             {
                 "width": width,
                 "height": height,
@@ -30,7 +31,7 @@ class Bracket:
         tee_nut_holes_y = [
             (idx - 1) * self.dimensions["tee_nut_spacing"] for idx in range(3)
         ]
-        points = []
+        points: List[Tuple[float, float]] = []
         for xval in v_slot_x:
             for yval in tee_nut_holes_y:
                 points.append((xval, yval))
@@ -48,8 +49,8 @@ class Bracket:
             .workplane(offset=self.dimensions["thickness"])
             .tag("holeplane")
             .rect(
-                xLen=clamp.dimensions["bolt_spacing_x"],
-                yLen=clamp.dimensions["bolt_spacing_y"],
+                xLen=cast(float, clamp.dimensions["bolt_spacing_x"]),
+                yLen=cast(float, clamp.dimensions["bolt_spacing_y"]),
                 forConstruction=True,
             )
             .vertices()

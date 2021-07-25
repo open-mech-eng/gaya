@@ -12,7 +12,7 @@ class Spindle:
         bearing_cap_height: float = 5.1,
         body_clamp_end_offset: float = 16
     ) -> None:
-        self.dimensions: MappingProxyType = MappingProxyType(
+        self.dimensions: MappingProxyType[str, float] = MappingProxyType(
             {
                 "nut_length": nut_length,
                 "shaft_length": shaft_length,
