@@ -8,3 +8,4 @@ jupyter-cadquery @ git+https://github.com/noce2/jupyter-cadquery.git@master#egg=
 fastapi>=0.67
 uvicorn[standard]
 ariadne>=0.13,<1.0
+dependency-injector>=4.34,<5.0
