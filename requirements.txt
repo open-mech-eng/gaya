@@ -1,11 +1,10 @@
-click>=7.0
+click>=8.0
 loguru
 ipython
 webcolors
 ipywidgets
 cqkit @ git+https://github.com/michaelgale/cq-kit.git@master#egg=cqkit
 jupyter-cadquery @ git+https://github.com/noce2/jupyter-cadquery.git@master#egg=jupyter-cadquery
-fastapi
+fastapi>=0.67
 uvicorn[standard]
-ariadne
-
+ariadne>=0.13,<1.0
