@@ -1,12 +1,18 @@
-flake8
-tox
-coverage
-pytest
-pytest-runner
-# jupyter-cadquery==2.0.0
-black
-pylint
-fastapi[all]
+flake8>=3.9.2,<4.0
+tox>=3.24.0,<4.0
+coverage>=5.5
+pytest>=6.2.4,<7
+black>=21.6b0
+pylint>=2.9.6
+
+# Fast api deps apart from graphene
+requests>=2.26
+jinja2 >=2.11.2,<3.0.0
+python-multipart >=0.0.5,<0.0.6
+itsdangerous >=1.1.0,<2.0.0
+pyyaml >=5.3.1,<6.0.0
+ujson >=4.0.1,<5.0.0
+orjson >=3.2.1,<4.0.0
 
 # installs local examples package
 -e ./examples
