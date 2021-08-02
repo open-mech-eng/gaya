@@ -16,3 +16,4 @@ orjson >=3.2.1,<4.0.0
 
 # installs local examples package
 -e ./examples
+-e ./
