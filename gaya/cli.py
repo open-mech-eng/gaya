@@ -22,3 +22,6 @@ def run(import_path: str):
 
 
 cli.add_command(run)
+
+if __name__ == "__main__":
+    cli()
