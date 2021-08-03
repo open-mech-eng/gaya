@@ -41,7 +41,7 @@ setup(
     description="An object-oriented and code-driven approach to engineering design and modelling.",
     entry_points={
         "console_scripts": [
-            "gaya=gaya.cli:main",
+            "gaya=gaya.cli:cli",
         ],
     },
     install_requires=requirements,
