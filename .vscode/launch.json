@@ -9,7 +9,9 @@
             "type": "python",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "module": "gaya.cli"
+            "module": "gaya.cli",
+            "args": ["run", "examples.cycloidal_gear.main:CycloidalGear"],
+            "justMyCode": false
         }
     ]
 }
