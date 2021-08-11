@@ -6,27 +6,26 @@ from typing import Any, Callable, Optional, TypeVar, cast
 
 from loguru import logger
 from gaya.dependency_manager import Container
-from fastapi import FastAPI
-from dependency_injector.wiring import Provide
+from fastapi import APIRouter
+from fastapi_utils.cbv import cbv
+from dependency_injector.wiring import Provide, inject
 
 F = TypeVar("F", bound=Callable[..., Any])
 
 
+@inject
 def geometry(
     _func: Optional[F] = None,
     *,
     enable_rest: bool = True,
-    app: FastAPI = Provide[Container.app],
+    router: APIRouter = Provide[Container.router],
 ) -> Callable[..., Any]:
     def decorator_geometry(func: F) -> F:
+        logger.debug(f"Making method {func.__name__} accessible as an endpoint.")
+
+        @router.get("/geometry")
         @functools.wraps(func)
-        def wrapper_geometry(*args: Any, **kwargs: Any) -> Any:
-            logger.debug(f"Making method {func.__name__} accessible as an endpoint.")
-
-            if enable_rest:
-                (app.get("/geometry"))(func)
-
-            logger.debug(f"Method {func.__name__} now accessible as an endpoint.")
+        async def wrapper_geometry(*args: Any, **kwargs: Any) -> Any:
             return func(*args, **kwargs)
 
         return cast(F, wrapper_geometry)
@@ -35,3 +34,25 @@ def geometry(
         return decorator_geometry
     else:
         return decorator_geometry(_func)
+
+
+@inject
+def component(
+    _cls: Optional[Any] = None,
+    *,
+    router: APIRouter = Provide[Container.router],
+):
+    def decorator_component(cls: Any) -> Any:
+        logger.debug(f"Making class {cls.__name__} a fastAPI router.")
+
+        @functools.wraps(cls)
+        def wrapper_component(*args: Any, **kwargs: Any) -> Any:
+            modifiedCls = cbv(router)(cls)
+            return modifiedCls(*args, **kwargs)
+
+        return wrapper_component
+
+    if _cls is None:
+        return decorator_component
+    else:
+        return decorator_component(_cls)
