@@ -1,9 +1,11 @@
 """Main module."""
 
 import sys
-from typing import Any, Callable, cast
+from types import ModuleType
+from typing import Any, Callable, List, cast
 from asgiref.typing import ASGI3Application
 
+from functools import cache
 from gaya.dependency_manager import Container
 from gaya import api
 from loguru import logger
@@ -51,3 +53,14 @@ def main(import_str: str):
         raise
 
     logger.info("stopping Gaya application")
+
+
+@cache
+def setup_gaya_deps(modules_to_wire: List[ModuleType] = [api]) -> Container:
+    """Setup Gaya dependencies."""
+    logger.debug("Creating dependency container")
+    container = Container()
+    container.check_dependencies()
+    logger.debug("Wiring container to inject in ")
+    container.wire(modules=modules_to_wire)
+    return container
