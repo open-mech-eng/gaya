@@ -11,6 +11,8 @@ RUN echo "deb [arch=amd64 signed-by=/usr/share/keyrings/conda-archive-keyring.gp
 
 RUN apt-get update && apt-get install -y conda
 
+RUN apt-get update && apt-get install gnupg2 -y
+
 SHELL ["/bin/bash", "-c",  "source /opt/conda/etc/profile.d/conda.sh" ]
 
 RUN echo "conda version is $(conda -V)"
