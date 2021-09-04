@@ -21,4 +21,6 @@ WORKDIR /code
 
 COPY . .
 
-RUN conda install -f ./environment.yml
+RUN conda env create -f ./environment.yml
+
+ENTRYPOINT ["/bin/bash", "-c",  "source /opt/conda/etc/profile.d/conda.sh" ]
