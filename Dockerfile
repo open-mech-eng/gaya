@@ -11,7 +11,7 @@ RUN echo "deb [arch=amd64 signed-by=/usr/share/keyrings/conda-archive-keyring.gp
 
 RUN apt-get update && apt-get install -y conda
 
-RUN apt-get update && apt-get install gnupg2 -y
+RUN apt-get update && apt-get install gnupg2 libgl1 -y
 
 SHELL ["/bin/bash", "-c",  "source /opt/conda/etc/profile.d/conda.sh" ]
 
@@ -23,4 +23,6 @@ COPY . .
 
 RUN conda env create -f ./environment.yml
 
-ENTRYPOINT ["/bin/bash", "-c",  "source /opt/conda/etc/profile.d/conda.sh" ]
+RUN pip install -r requirements_dev.txt
+
+ENTRYPOINT ["/bin/bash", "-c",  "source /opt/conda/etc/profile.d/conda.sh && \"$@\"", "-s"]
