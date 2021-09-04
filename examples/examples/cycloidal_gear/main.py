@@ -9,5 +9,5 @@ class CycloidalGear:
         self.dimensions: Workplane = generate_geometry()
 
     @api.geometry
-    def geometry(self) -> str:
-        return "Hello world"
+    def geometry(self) -> Workplane:
+        return self.dimensions

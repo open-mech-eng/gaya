@@ -2,6 +2,7 @@
 Module containing decorators that make up Gaya's APIs.
 """
 import functools
+from gaya.cq_adapters import export_json
 from typing import Any, Callable, Optional, TypeVar, cast
 
 from loguru import logger
@@ -18,6 +19,7 @@ def geometry(
     _func: Optional[F] = None,
     *,
     enable_rest: bool = True,
+    serialise_for_tjs: bool = True,
     router: APIRouter = Provide[Container.router],
 ) -> Callable[..., Any]:
     def decorator_geometry(func: F) -> F:
@@ -26,6 +28,8 @@ def geometry(
         @router.get("/geometry")
         @functools.wraps(func)
         async def wrapper_geometry(*args: Any, **kwargs: Any) -> Any:
+            if serialise_for_tjs:
+                return export_json(func(*args, **kwargs))
             return func(*args, **kwargs)
 
         return cast(F, wrapper_geometry)
